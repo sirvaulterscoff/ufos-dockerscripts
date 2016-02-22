@@ -1,0 +1,16 @@
+version: '2'
+services:
+  jdk7:
+    build: java-7
+
+  jetty:
+    depends_on:
+      - jdk7
+    build: core/environment/src/main/resources
+
+  ufos-core-jetty:
+    build: core/sufd-server/target
+    dockerfile: core/sufd-server/src/assembly/Dockerfile
+    ports:
+        - "18080"
+        - "5005"
